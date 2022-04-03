@@ -1,0 +1,47 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    <div class='container'>
+        {% for list in lists %}
+            <a href="listing/{{list.listing.id}}_{{list.listing.name}}">
+                {% if list.listing.listing_closed %}
+                    <div class='row alert alert-danger'>
+                {% else %}
+                    <div class='row alert alert-secondary'>
+                {% endif %}
+
+                    {% if list.listing.image_url is not None %}
+                        <div class='col-md-2'>
+                            <img src={{list.listing.image_url}} width=150vh>
+                        </div>
+                    {% endif %}
+                    <div class='col-md-10'>
+                        <div>
+                        {% if list.listing.listing_closed %}
+                            *THIS LISTING HAS BEEN CLOSED*
+                        {% endif %}
+                        </div>
+                        <div>
+                            {{ list.listing.name }}
+                        </div>
+                        <div>
+                            {{ list.listing.price }}
+                        </div>
+                        <div>
+                            {{ list.listing.category }}
+                        </div>
+                        <div>
+                            Created on {{ list.listing.datetime_created }}
+                        </div>
+                        <div>
+                            {{ list.listing.owner.username }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

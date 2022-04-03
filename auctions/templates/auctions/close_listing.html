@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %} 
+{% block body %}
+{%if error is not None %}
+    <div class='row alert alert-secondary'>{{error}}</div>
+{% endif %}
+<h3>Top Bid:</h2>
+    <ul>
+        <li>
+            ${{top_bid}}, 
+            {%if owner_of_top_bid is not None%}
+                by: {{owner_of_top_bid.first_name}} {{owner_of_top_bid.last_name}}({{owner_of_top_bid.username}})
+            {% else %}
+                Listing base price
+            {% endif %}
+        </li>
+    </ul>
+<h4>
+    Are you sure you want to accept this bid?
+</h4>
+<form method="post">
+    {% csrf_token %}    
+    <button type="submit" class="btn btn-success">Accept Offer</button>
+    <input type="hidden" name="ACCEPTED">
+</form>
+{% endblock %}

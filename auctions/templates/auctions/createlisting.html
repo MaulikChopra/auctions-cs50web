@@ -1,0 +1,16 @@
+{% extends "auctions/layout.html" %} {% block body %}
+<form method="post">
+  {% csrf_token %} 
+  {% if error %}
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  {%endif%}
+  {%for f in form%}
+    <div>
+      {{f.label}} {{f}}
+    </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-success">Create Listing</button>
+</form>
+{% endblock %}

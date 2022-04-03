@@ -1,0 +1,80 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    <div class='container'>
+        {% for listing in listings %}
+            <a href="/listing/{{listing.id}}_{{listing.name}}">
+            <div class='row alert alert-secondary'>
+                {% if listing.image_url is not None %}
+                    <div class='col-md-2'>
+                        <img src={{listing.image_url}} width=150vh>
+                    </div>
+                {% endif %}
+                <div class='col-md-10'>
+                    <div>
+                    {% if listing.listing_closed %}
+                        *THIS LISTING HAS BEEN CLOSED*
+                    {% endif %}
+                    </div>
+                    <div>
+                        {{ listing.name }}
+                    </div>
+                    <div>
+                        {{ listing.price }}
+                    </div>
+                    <div>
+                        {{ listing.category }}
+                    </div>
+                    <div>
+                        Created on {{ listing.datetime_created }}
+                    </div>
+                    <div>
+                        {{ listing.owner.username }}
+                    </div>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <h2>InActive Listings</h2>
+
+    <div class='container'>
+        {% for listing in closed_listings %}
+            <a href="listing/{{listing.id}}_{{listing.name}}">
+            <div class='row alert alert-danger'>
+                {% if listing.image_url is not None %}
+                    <div class='col-md-2'>
+                        <img src={{listing.image_url}} width=150vh>
+                    </div>
+                {% endif %}
+                <div class='col-md-10'>
+                    <div>
+                    {% if listing.listing_closed %}
+                        *THIS LISTING HAS BEEN CLOSED*
+                    {% endif %}
+                    </div>
+                    <div>
+                        {{ listing.name }}
+                    </div>
+                    <div>
+                        {{ listing.price }}
+                    </div>
+                    <div>
+                        {{ listing.category }}
+                    </div>
+                    <div>
+                        Created on {{ listing.datetime_created }}
+                    </div>
+                    <div>
+                        {{ listing.owner.username }}
+                    </div>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

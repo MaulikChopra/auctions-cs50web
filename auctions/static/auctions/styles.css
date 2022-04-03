@@ -1,0 +1,73 @@
+.nav {
+  justify-content: center !important;
+}
+.Header {
+  padding: 5px;
+  background-color: purple;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 6px 3px purple;
+}
+.Content {
+  padding: 5px;
+}
+h1 {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  font-size: 6vh;
+}
+.button-all {
+  border: 2px solid black;
+  background-color: white;
+  padding: 5px 5px;
+  cursor: pointer;
+  margin: 2px 5px;
+  text-decoration: none !important;
+}
+
+.btn-green {
+  border-color: #04aa6d;
+  color: green !important;
+}
+
+/* .btn-green:hover {
+  background-color: #04aa6d;
+  color: white !important;
+} */
+
+.btn-blue {
+  border-color: #2196f3;
+  color: dodgerblue !important;
+}
+
+.btn-blue:hover {
+  background-color: #2196f3;
+  color: white !important;
+}
+.btn-red {
+  border-color: #f44336;
+  color: red !important;
+}
+
+.btn-red:hover {
+  background-color: #f44336;
+  color: white !important;
+}
+
+.btn-orange {
+  border-color: #ff9800;
+  color: orange !important;
+}
+
+.btn-orange:hover {
+  background-color: #ff9800;
+  color: white !important;
+}
+.btn-black {
+  border-color: black;
+  color: black !important;
+}
+.btn-black:hover {
+  background-color: black;
+  color: white !important;
+}

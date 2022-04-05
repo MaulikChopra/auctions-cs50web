@@ -8,58 +8,55 @@
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-    <div class="Header">
-        <div>
-        </div>
-        
+    <div class="header">   
+        <h1>Auctionaire!</h1>
+
         <ul class="nav">
-            <li class="nav-item">
-                <h1>Auctionaire!</h1>
-            </li>
-            <li class="nav-item">
-                <a class="button-all btn-blue" href="{% url 'index' %}">Active Listings</a>
-            </li>
-            <li class="nav-item">
-                <a class="button-all btn-blue" href="{% url 'category' %}">Categories</a>
-            </li>
-            {% if user.is_authenticated %}
+            
                 <li class="nav-item">
-                    <a class="button-all btn-black" href="{% url 'create_listing' %}">Create Listing</a>
+                    <a class="button-all btn-blue" href="{% url 'index' %}">Active Listings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="button-all btn-orange" href="{% url 'watchlist' %}">
-                        Watchlist
-                    </a>
+                    <a class="button-all btn-blue" href="{% url 'category' %}">Categories</a>
                 </li>
-                <li class="nav-item">
-                    <a class="button-all btn-orange" href="{% url 'my_listings' %}">
-                        My Listings
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="button-all btn-red" href="{% url 'login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="button-all btn-red" href="{% url 'register' %}">Register</a>
-                </li>
-            {% endif %}
-            <li>
-                <div>
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="button-all btn-red" href="{% url 'logout' %}">Log Out</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="button-all btn-green">Hello <strong>{{ user.username }}</strong></a>
+                        <a class="button-all btn-black" href="{% url 'create_listing' %}">Create Listing</a>
                     </li>
-                    {% else %}
                     <li class="nav-item">
-                        <a class="button-all btn-green"><strong>Not Logged in</strong></a>
+                        <a class="button-all btn-orange" href="{% url 'watchlist' %}">
+                            Watchlist
+                        </a>
                     </li>
-                    {% endif %}
-                </div>
-            </li>
+                    <li class="nav-item">
+                        <a class="button-all btn-orange" href="{% url 'my_listings' %}">
+                            My Listings
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="button-all btn-red" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="button-all btn-red" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <div>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="button-all btn-red" href="{% url 'logout' %}">Log Out</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="button-all btn-green">Hello <strong>{{ user.username }}</strong></a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="button-all btn-green"><strong>Not Logged in</strong></a>
+                        </li>
+                        {% endif %}
+                    </div>
+                </li>
         </ul>
     </div>
     <div class="Content">

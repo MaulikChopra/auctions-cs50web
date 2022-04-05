@@ -33,7 +33,7 @@ class Listing(models.Model):
         OTHER = 'Others', _('Others')
 
     # id is automatically created
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=64)
     description = models.TextField(max_length=1000)
     price = models.FloatField(validators=[MinValueValidator(1)])
     owner = models.ForeignKey(
@@ -81,4 +81,4 @@ class Watchlist(models.Model):
         Listing, on_delete=models.CASCADE, related_name="watched_by")
 
     def __str__(self):
-        return f"id:{self.id}, owner:({self.owner}), listing:({self.listings})"
+        return f"id:{self.id}, owner:({self.owner}), listing:({self.listing})"

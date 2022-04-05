@@ -62,7 +62,7 @@ def store_comment_in_model(data, owner, listing):
 def add_to_watchlist_model(owner, listing):
     try:
         Watchlist(owner=owner,
-                  listings=listing
+                  listing=listing
                   ).save()
         return 0
     except Exception as e:
@@ -72,7 +72,7 @@ def add_to_watchlist_model(owner, listing):
 
 def remove_from_watchlist_model(owner, listing):
     try:
-        owner.watchlist.filter(listings__exact=listing).delete()
+        owner.watchlist.filter(listing__exact=listing).delete()
         return 0
     except Exception as e:
         print(e)

@@ -40,7 +40,7 @@ def listing_page(request, entry):
     if len(listing.bids.all()) == 0:
         show_close_button = False
     try:
-        if request.user.watchlist.get(listings__exact=listing):
+        if request.user.watchlist.get(listing__exact=listing):
             add_to_watchlist = False  # show remove from watchlist
     except Exception:
         add_to_watchlist = True

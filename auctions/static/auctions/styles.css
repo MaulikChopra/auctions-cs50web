@@ -77,7 +77,38 @@ h1 {
 .Content {
   margin: 10px;
 }
-
 h2 {
   font-weight: 600;
+}
+.card {
+  width: 18rem;
+  border-width: 2px;
+  border-radius: 0px;
+}
+.card:hover {
+  border-color: darkblue;
+}
+.card-img-top {
+  height: 14vw;
+  object-fit: contain;
+}
+.card-title {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13em;
+}
+.card-body:hover {
+  color: darkblue;
+}
+.card-body {
+  color: black;
+  padding: 5px;
+}
+
+.basic-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, 18rem);
 }

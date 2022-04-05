@@ -1,80 +1,81 @@
-{% extends "auctions/layout.html" %}
-
+{% extends "auctions/layout.html" %} 
 {% block body %}
-    <h2>Active Listings</h2>
+<h2>Active Listings</h2>
 
-    <div class='container'>
-        {% for listing in listings %}
-            <a href="/listing/{{listing.id}}_{{listing.name}}">
-            <div class='row alert alert-secondary'>
-                {% if listing.image_url is not None %}
-                    <div class='col-md-2'>
-                        <img src={{listing.image_url}} width=150vh>
-                    </div>
-                {% endif %}
-                <div class='col-md-10'>
-                    <div>
-                    {% if listing.listing_closed %}
-                        *THIS LISTING HAS BEEN CLOSED*
-                    {% endif %}
-                    </div>
-                    <div>
-                        {{ listing.name }}
-                    </div>
-                    <div>
-                        {{ listing.price }}
-                    </div>
-                    <div>
-                        {{ listing.category }}
-                    </div>
-                    <div>
-                        Created on {{ listing.datetime_created }}
-                    </div>
-                    <div>
-                        {{ listing.owner.username }}
-                    </div>
-                </div>
-            </div>
-            </a>
-        {% endfor %}
-    </div>
+<section class="basic-grid">
+  {% for listing in listings %}
+    <a href="/listing/{{listing.id}}_{{listing.name}}" class="card-link">
+      <div class="card">
+        {% if listing.image_url is not None %}
+          <img
+            src="{{listing.image_url}}"
+            class="card-img-top"
+            alt="listing image"
+          />
+        {% else %}
+          <img
+            src="https://www.moleculardevices.com/sites/default/files/2019-03/product-dummy.png"
+            class="card-img-top"
+            alt="dummy image"
+          />
+        {% endif %}
+        <div class="card-body">
+          {% if listing.listing_closed %}
+          <p class="card-text">*THIS LISTING HAS BEEN CLOSED*</p>
+          {% endif %}
+          <h5 class="card-title"><b style="font-weight: 600;">{{ listing.name }}</b></h5>
+          <p class="card-text">
+            Price <b style="font-weight: 600;">${{ listing.price }}</b>
+            <br>
+            Owned by <b style="font-weight: 600;">{{ listing.owner.username }}</b>
+            <br>
+            {{ listing.category }}
+            <br>
+            <em style="color: grey;">Created {{ listing.datetime_created }}</em>
+          </p>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</section>
 
-    <h2>InActive Listings</h2>
+<h2>InActive Listings</h2>
 
-    <div class='container'>
-        {% for listing in closed_listings %}
-            <a href="listing/{{listing.id}}_{{listing.name}}">
-            <div class='row alert alert-danger'>
-                {% if listing.image_url is not None %}
-                    <div class='col-md-2'>
-                        <img src={{listing.image_url}} width=150vh>
-                    </div>
-                {% endif %}
-                <div class='col-md-10'>
-                    <div>
-                    {% if listing.listing_closed %}
-                        *THIS LISTING HAS BEEN CLOSED*
-                    {% endif %}
-                    </div>
-                    <div>
-                        {{ listing.name }}
-                    </div>
-                    <div>
-                        {{ listing.price }}
-                    </div>
-                    <div>
-                        {{ listing.category }}
-                    </div>
-                    <div>
-                        Created on {{ listing.datetime_created }}
-                    </div>
-                    <div>
-                        {{ listing.owner.username }}
-                    </div>
-                </div>
-            </div>
-            </a>
-        {% endfor %}
-    </div>
+<section class="basic-grid">
+  {% for listing in closed_listings %}
+    <a href="/listing/{{listing.id}}_{{listing.name}}" class="card-link">
+      <div class="card" style="background-color: #c87b7b;">
+        {% if listing.image_url is not None %}
+          <img
+            src="{{listing.image_url}}"
+            class="card-img-top"
+            alt="listing image"
+          />
+        {% else %}
+          <img
+            src="./auctions/image/dummy.png"
+            class="card-img-top"
+            alt="dummy image"
+          />
+        {% endif %}
+        <div class="card-body">
+          {% if listing.listing_closed %}
+            <p class="card-text">*THIS LISTING HAS BEEN CLOSED*</p>
+          {% endif %}
+          <h5 class="card-title"><b>{{ listing.name }}</b></h5>
+          <p class="card-text">
+            Price <b>${{ listing.price }}</b>
+            <br>
+            Owned by <b>{{ listing.owner.username }}</b>
+            <br>
+            {{ listing.category }}
+            <br>
+            <em style="color: grey;">Created {{ listing.datetime_created }}</em>
+          </p>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</section>
 
 {% endblock %}

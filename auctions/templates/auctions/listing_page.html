@@ -34,9 +34,13 @@
     {% else %}
         <h3>This listing has been closed</h3>
     {% endif %}
-    <div>
-    <img src="{{listing.image_url}}" width=150vh>
-    </div>
+    {% if listing.image_url is not None %}
+        <div>
+        <img src="{{listing.image_url}}" width=150vh>
+        </div>
+    {% else %}
+        <img src="https://www.moleculardevices.com/sites/default/files/2019-03/product-dummy.png" width=150vh/>
+    {% endif %}
     <div>
         <div>
         {{listing.name}}

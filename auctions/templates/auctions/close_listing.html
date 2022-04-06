@@ -4,22 +4,20 @@
     <div class='row alert alert-secondary'>{{error}}</div>
 {% endif %}
 <h3>Top Bid:</h2>
-    <ul>
-        <li>
-            ${{top_bid}}, 
-            {%if owner_of_top_bid is not None%}
-                by: {{owner_of_top_bid.first_name}} {{owner_of_top_bid.last_name}}({{owner_of_top_bid.username}})
-            {% else %}
-                Listing base price
-            {% endif %}
-        </li>
-    </ul>
+    <button class="button-all" style="font-weight: 400;">
+        <b style="font-size: 1.25rem">${{top_bid}}</b>
+        {%if owner_of_top_bid is not None%}
+            by {{owner_of_top_bid.first_name}} {{owner_of_top_bid.last_name}}({{owner_of_top_bid.username}})
+        {% else %}
+            Listing base price
+        {% endif %}
+    </button>
 <h4>
-    Are you sure you want to accept this bid?
+    Are you sure you want to accept this offer?
 </h4>
 <form method="post">
     {% csrf_token %}    
-    <button type="submit" class="btn btn-success">Accept Offer</button>
+    <button type="submit" class="button-all btn-green">Accept Offer</button>
     <input type="hidden" name="ACCEPTED">
 </form>
 {% endblock %}

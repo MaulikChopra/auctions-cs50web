@@ -74,12 +74,12 @@
                         <input type="hidden" name="add_watchlist">
                     </form>
                 {% endif %}
-                {%if show_bid_button %}
-                <div>
-                    <a href="create_new_bid">
-                        <button class="button-all btn-black" id="bid-btn">Bid</button>
-                    </a>
-                </div>
+                {%if show_bid_button and listing.listing_closed == False%}
+                    <div>
+                        <a href="create_new_bid">
+                            <button class="button-all btn-black" id="bid-btn">Bid</button>
+                        </a>
+                    </div>
                 {% endif %}
             {% endif %}
         </div>

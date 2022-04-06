@@ -147,6 +147,12 @@ h2 {
   vertical-align: middle;
   height: 2rem;
 }
+.textfield {
+  border: 0.15rem solid #04aa6d;
+  background-color: white;
+  vertical-align: middle;
+  height: 2rem;
+}
 #comment-button {
   padding: 0.05rem 0.2rem;
   float: left;

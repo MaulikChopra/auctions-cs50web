@@ -15,7 +15,7 @@ class Create_listing_form(forms.Form):
 
 
 class Create_bid_form(forms.Form):
-    bid_amount = forms.FloatField(label="Price: $")
+    bid_amount = forms.FloatField(label="")
 
 
 class Create_comment_form(forms.Form):

@@ -4,12 +4,13 @@
     <div class='row alert alert-secondary'>Please enter a value greater than Top bid</div>
 {% endif %}
     <form method="post">
-            {% csrf_token %}    
+        {% csrf_token %}   
+        <h5>Your Bid $</h5> 
         {{form}}
-        <button type="submit" class="btn btn-success">Bid</button>
+        <button type="submit" class="button-all btn-green-hover">Bid</button>
     </form>
     <div>
-        <h3>Top Bids:</h2>
+        <h3>Top Bids:</h3>
         <ul>
             <li>
                 ${{top_bid}}, 

@@ -22,6 +22,11 @@ class Create_listing_form(forms.Form):
 class Create_bid_form(forms.Form):
     bid_amount = forms.FloatField(label="")
 
+    def __init__(self, *args, **kwargs):
+        super(Create_bid_form, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'textfield'
+
 
 class Create_comment_form(forms.Form):
     comment_content = forms.CharField(widget=forms.Textarea(attrs={"rows": 1, "cols": "25%", 'placeholder': 'Add a Comment...', "class": "comment-textfield"}),

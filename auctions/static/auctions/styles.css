@@ -82,6 +82,10 @@ h1 {
   background-color: black;
   color: white !important;
 }
+.btn-black-no-hover {
+  border-color: black;
+  color: black !important;
+}
 
 .Content {
   margin: 0.6rem;
@@ -160,5 +164,10 @@ h2 {
 #main-heading:hover {
   text-decoration: none;
 }
-
+#watchlist-btn {
+  padding: 0.1rem 0.5rem;
+}
+#bid-btn {
+  padding: 0.1rem 0.5rem;
+}
 /* CREATE LISTING PAGE CSS */

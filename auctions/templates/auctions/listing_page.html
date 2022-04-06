@@ -48,6 +48,25 @@
         <div class="col-md-2">
             {% comment %} BUTTONS {% endcomment %}
             {% if user.is_authenticated %}
+                {% comment %} add to watchlist button {% endcomment %}
+                {% if add_to_watchlist == False %}
+                    <form method="post">
+                        {% csrf_token %}    
+                        <button type="submit" class="button-all btn-orange" id="watchlist-btn">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                        <input type="hidden" name="remove_watchlist">
+                    </form>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}    
+                        <button type="submit" class="button-all btn-orange" id="watchlist-btn">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <input type="hidden" name="add_watchlist">
+                    </form>
+                {% endif %}
+                {% comment %} close listing button {% endcomment %}
                 {%if listing.listing_closed == False %}
                     {%if show_close_button %}
                         <div>
@@ -57,37 +76,20 @@
                         </div>
                     {% endif %}
                 {% endif %}
-                {% if add_to_watchlist == False %}
-                <form method="post">
-                    {% csrf_token %}    
-                    <button type="submit" class="button-all btn-orange" id="watchlist-btn">
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-                    <input type="hidden" name="remove_watchlist">
-                </form>
-                {% endif %}
-                {% if  add_to_watchlist == True%}
-                    <form method="post">
-                        {% csrf_token %}    
-                        <button type="submit" class="button-all btn-orange" id="watchlist-btn">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                        <input type="hidden" name="add_watchlist">
-                    </form>
-                {% endif %}
+                {% comment %} bid button {% endcomment %}
                 {%if show_bid_button and listing.listing_closed == False%}
-                    <div>
-                        <a href="create_new_bid">
-                            <button class="button-all btn-black" id="bid-btn">Bid</button>
-                        </a>
-                    </div>
+                <div>
+                    <a href="create_new_bid">
+                        <button class="button-all btn-black" id="bid-btn">Bid</button>
+                            </a>
+                        </div>
                 {% endif %}
             {% endif %}
         </div>
     </div>
 </div>
 <hr>
-{% comment %} BIDS {% endcomment %}
+{% comment %} ALL BIDS {% endcomment %}
 <h4><b>Top Bids</b></h4>
 <div>
     {%for bid in bids%}
@@ -101,7 +103,7 @@
     {% endfor %}
 </div>
 
-{% comment %} COMMENTS {% endcomment %}
+{% comment %} ALL COMMENTS {% endcomment %}
 <hr>
 <div class="row">
     <div class="col-md-2">

@@ -91,7 +91,7 @@
 <div>
     {%for bid in bids%}
         <div>
-            <button class="button-all btn-black-no-hover" style="font-weight: 400;">
+            <button class="button-all" style="font-weight: 400;">
                 <b style="font-size: 1.25rem ">${{bid.bid_amount}}</b>
                 by <b style="font-weight: 500">{{bid.owner.first_name}} {{bid.owner.last_name}}({{bid.owner.username}})</b>
                 on <em style="color: grey">{{listing.datetime_created}}</em>
@@ -127,7 +127,7 @@
 <div style="margin-left: 1rem;">
     {%for comment in comments%}
         <div>
-            <button class="button-all btn-black-no-hover text-left" style="font-weight: 400;">
+            <button class="button-all text-left" style="font-weight: 400;">
                 <b style="font-size: 1.15rem; font-weight:500; ">{{comment.comment_content}}</b>
                 <br>
                 by <b style="font-weight: 500">{{comment.owner.first_name}} {{comment.owner.last_name}} ({{comment.owner.username}})</b>

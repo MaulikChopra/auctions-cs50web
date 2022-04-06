@@ -8,9 +8,13 @@
   {%endif%}
   {%for f in form%}
     <div>
-      {{f.label}} {{f}}
+      <h6>{{f.label}}</h6>
+    </div>
+    <div>
+      {{f}}
     </div>
   {% endfor %}
-  <button type="submit" class="btn btn-success">Create Listing</button>
+  <br>
+  <button type="submit" class="button-all btn-green-hover">Create Listing</button>
 </form>
 {% endblock %}

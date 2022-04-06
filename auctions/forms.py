@@ -3,16 +3,15 @@ from .models import Listing
 
 
 class Create_listing_form(forms.Form):
-    name = forms.CharField(
-        label="Name", max_length=64, required=True)
-    description = forms.CharField(widget=forms.Textarea(attrs={"rows": 5, "cols": 60}),
-                                  label="Description", required=True, max_length=1000)
+    name = forms.CharField(widget=forms.Textarea(attrs={"rows": 1, "cols": "25%", 'placeholder': 'Give a nice name...'}),
+                           label="Name:", max_length=64, required=True)
+    description = forms.CharField(widget=forms.Textarea(attrs={"rows": 3, "cols": "25%", 'placeholder': 'Describe your product...'}),
+                                  label="Description:", required=True, max_length=1000)
     price = forms.FloatField(
-        label="Price $", required=True)
+        label="Price $:", required=True)
     category = forms.ChoiceField(
         choices=Listing.Categories.choices, required=True)
-    image_url = forms.URLField(
-        label="Image URL", required=False)
+    image_url = forms.URLField(label="Image URL:", required=False)
 
 
 class Create_bid_form(forms.Form):

@@ -1,4 +1,6 @@
 {% extends "auctions/layout.html" %} 
+{% block title %}Place new bid{% endblock %}
+
 {% block body %}
 {%if error is not None %}
     <div class='row alert alert-secondary'>Please enter a value greater than Top bid</div>

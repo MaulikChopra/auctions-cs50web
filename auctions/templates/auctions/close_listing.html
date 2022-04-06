@@ -1,4 +1,6 @@
 {% extends "auctions/layout.html" %} 
+{% block title %}Close listing{% endblock %}
+
 {% block body %}
 {%if error is not None %}
     <div class='row alert alert-secondary'>{{error}}</div>

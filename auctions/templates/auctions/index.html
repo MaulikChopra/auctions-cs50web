@@ -38,13 +38,13 @@
     </a>
   {% endfor %}
 </section>
-
+<hr>
 <h2>InActive Listings</h2>
 
 <section class="basic-grid">
   {% for listing in closed_listings %}
     <a href="/listing/{{listing.id}}_{{listing.name}}" class="card-link">
-      <div class="card" style="background-color: #c87b7b;">
+      <div class="card" id="inactive-card">
         {% if listing.image_url is not None %}
           <img
             src="{{listing.image_url}}"
@@ -53,20 +53,19 @@
           />
         {% else %}
           <img
-            src="./auctions/image/dummy.png"
+            src="https://www.moleculardevices.com/sites/default/files/2019-03/product-dummy.png"
             class="card-img-top"
             alt="dummy image"
           />
         {% endif %}
         <div class="card-body">
           {% if listing.listing_closed %}
-            <p class="card-text">*THIS LISTING HAS BEEN CLOSED*</p>
           {% endif %}
-          <h5 class="card-title"><b>{{ listing.name }}</b></h5>
+          <h5 class="card-title"><b style="font-weight: 600;">{{ listing.name }}</b></h5>
           <p class="card-text">
-            Price <b>${{ listing.price }}</b>
+            Price <b style="font-weight: 600;">${{ listing.price }}</b>
             <br>
-            Owned by <b>{{ listing.owner.username }}</b>
+            Owned by <b style="font-weight: 600;">{{ listing.owner.username }}</b>
             <br>
             {{ listing.category }}
             <br>

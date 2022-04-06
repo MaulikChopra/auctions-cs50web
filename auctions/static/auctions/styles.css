@@ -24,12 +24,13 @@ h1 {
 
 /* HEADER BUTTONS */
 .button-all {
-  border: 2px solid black;
+  border: 0.15rem solid black;
   background-color: white;
-  padding: 5px 5px;
+  padding: 0.15rem;
   cursor: pointer;
-  margin: 2px 5px;
+  margin: 0.15rem 0.2rem;
   text-decoration: none !important;
+  font-weight: 500;
 }
 
 .btn-green {
@@ -75,15 +76,19 @@ h1 {
 }
 
 .Content {
-  margin: 10px;
+  margin: 0.6rem;
 }
 h2 {
-  font-weight: 600;
+  font-weight: 500;
 }
 .card {
   width: 18rem;
-  border-width: 2px;
+  border-width: 0.1rem;
   border-radius: 0px;
+  margin-right: 0px;
+}
+#inactive-card {
+  background-color: #c87b7b;
 }
 .card:hover {
   border-color: darkblue;
@@ -104,7 +109,7 @@ h2 {
 }
 .card-body {
   color: black;
-  padding: 5px;
+  padding: 0.3rem;
 }
 
 .basic-grid {
@@ -112,3 +117,34 @@ h2 {
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, 18rem);
 }
+
+/* LISTING PAGE CSS */
+.content-container {
+  margin: 1rem 1rem;
+}
+
+.listing-image {
+  width: 100%;
+}
+#category-title {
+  color: darkblue;
+}
+#category-title:hover {
+  text-decoration: none;
+}
+.comment-textfield {
+  float: right;
+  border: 0.15rem solid #f44336;
+  background-color: white;
+  vertical-align: middle;
+  height: 2rem;
+}
+#comment-button {
+  padding: 0.05rem 0.2rem;
+  float: left;
+}
+#main-heading:hover {
+  text-decoration: none;
+}
+
+/* CREATE LISTING PAGE CSS */

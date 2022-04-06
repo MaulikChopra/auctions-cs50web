@@ -95,7 +95,7 @@ def listing_page(request, entry):
 
 @login_required
 def watchlist_page(request):
-    lists = request.user.watchlist.all()
+    lists = request.user.watchlist.all().order_by("-listing")
     return render(request, "auctions/watchlist.html", {
         "lists": lists
     })
@@ -103,9 +103,14 @@ def watchlist_page(request):
 
 @login_required
 def my_listings_page(request):
-    listings = request.user.listings.all()
+    active_listings = request.user.listings.filter(
+        listing_closed=False).order_by("-datetime_created")
+    closed_listings = request.user.listings.filter(
+        listing_closed=True).order_by("-datetime_created")
+
     return render(request, "auctions/index.html", {
-        "listings": listings
+        'listings': active_listings,
+        "closed_listings": closed_listings
     })
 
 

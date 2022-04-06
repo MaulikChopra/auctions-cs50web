@@ -5,58 +5,57 @@
     <head>
         <title>{% block title %}Auctions{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/c99c93c7e1.js" crossorigin="anonymous"></script>
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
     </head>
     <body>
     <div class="header">   
-        <h1>Auctionaire!</h1>
-
+        <h1><a class="button-all btn-black" style="padding: 0rem 0.5rem; font-weight: 600; border-width: 0.2rem" href="{% url 'index' %}">Auctionaire!</a></h1>
         <ul class="nav">
-            
+            {% comment %} <li class="nav-item">
+                <a class="button-all btn-blue" href="{% url 'index' %}">Active Listings</a>
+            </li> {% endcomment %}
+            <li class="nav-item">
+                <a class="button-all btn-blue" href="{% url 'category' %}">Categories</a>
+            </li>
+            {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="button-all btn-blue" href="{% url 'index' %}">Active Listings</a>
+                    <a class="button-all btn-black" href="{% url 'create_listing' %}">Create Listing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="button-all btn-blue" href="{% url 'category' %}">Categories</a>
+                    <a class="button-all btn-orange" href="{% url 'watchlist' %}">
+                        Watchlist
+                    </a>
                 </li>
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="button-all btn-black" href="{% url 'create_listing' %}">Create Listing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="button-all btn-orange" href="{% url 'watchlist' %}">
-                            Watchlist
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="button-all btn-orange" href="{% url 'my_listings' %}">
-                            My Listings
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="button-all btn-red" href="{% url 'login' %}">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="button-all btn-red" href="{% url 'register' %}">Register</a>
-                    </li>
-                {% endif %}
-                <li>
-                    <div>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="button-all btn-red" href="{% url 'logout' %}">Log Out</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="button-all btn-green">Hello <strong>{{ user.username }}</strong></a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="button-all btn-green"><strong>Not Logged in</strong></a>
-                        </li>
-                        {% endif %}
-                    </div>
+                <li class="nav-item">
+                    <a class="button-all btn-orange" href="{% url 'my_listings' %}">
+                        My Listings
+                    </a>
                 </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="button-all btn-red" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="button-all btn-red" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+            <li>
+                <div>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="button-all btn-red" href="{% url 'logout' %}">Log Out</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="button-all btn-green"><strong>{{ user.username }}</strong></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="button-all btn-green"><strong>Not Logged in</strong></a>
+                    </li>
+                    {% endif %}
+                </div>
+            </li>
         </ul>
     </div>
     <div class="Content">

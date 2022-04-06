@@ -20,8 +20,8 @@ class Create_bid_form(forms.Form):
 
 
 class Create_comment_form(forms.Form):
-    comment_content = forms.CharField(widget=forms.Textarea(attrs={"rows": 2, "cols": 100}),
-                                      label="Comment", required=True, max_length=1000)
+    comment_content = forms.CharField(widget=forms.Textarea(attrs={"rows": 1, "cols": "25%", 'placeholder': 'Add a Comment...', "class": "comment-textfield"}),
+                                      label="", required=True, max_length=1000)
 
 
 class Category_form(forms.Form):

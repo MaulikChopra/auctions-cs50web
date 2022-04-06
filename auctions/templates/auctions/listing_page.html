@@ -1,99 +1,140 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    {% if user.is_authenticated %}
-        {% if add_to_watchlist == False %}
-        <form method="post">
-            {% csrf_token %}    
-            <button type="submit" class="btn btn-success">
-                Remove from watchlist</button>
-            <input type="hidden" name="remove_watchlist">
-        </form>
-        {% endif %}
-        {% if  add_to_watchlist == True%}
-            <form method="post">
-                {% csrf_token %}    
-                <button type="submit" class="btn btn-success">Add to watchlist</button>
-                <input type="hidden" name="add_watchlist">
+{% comment %}  HEADINGS {% endcomment %}
+{% if show_winner %}
+<h3>Congratulations! You are the winner.
+</h3>
+{% endif %}
+{% if listing.listing_closed %}
+<h3>This listing has been closed</h3>
+{% endif %}
+<div class="content-container">
+    <div class="row">
+        <div class="col-md-3">
+            {% comment %} IMAGE {% endcomment %}
+            {% if listing.image_url is not None %}
+                <div>
+                <img src="{{listing.image_url}}" class="listing-image" >
+                </div>
+            {% else %}
+                <img src="https://www.moleculardevices.com/sites/default/files/2019-03/product-dummy.png"
+                class="listing-image"/>
+            {% endif %}
+        </div>
+        <div class="col-md-7">        
+            {% comment %} CONTENT {% endcomment %}
+            <div>
+                <h3><b>{{listing.name}}</b></h3>
+                Owned by <b style="font-weight:600">{{listing.owner.first_name}} {{listing.owner.last_name}} ({{listing.owner.username}})</b>
+                <br>
+                {%if top_bid is not None%}
+                    Highest bid <b style="font-size: 2rem">${{top_bid}}</b>
+                    &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;Base price <b>${{listing.price}}</b>
+                {% else %}
+                    Base price <b style="font-size: 2rem">${{listing.price}}</b>
+                {% endif %}
+                <br>
+                <b>Description</b>
+                <br>
+                <div style="margin-left: 1rem">{{listing.description}}</div>
+                <br>
+                <em style="color: grey"><b>Listed on</b> {{listing.datetime_created}}</em>
+                <br>
+                <a href="/category/{{listing.category}}" id="category-title"><b>Category:</b> {{listing.category}}</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            {% comment %} BUTTONS {% endcomment %}
+            {% if user.is_authenticated %}
+                {%if listing.listing_closed == False %}
+                    {%if show_close_button %}
+                        <div>
+                            <a href="close_listing">
+                                <button class="button-all btn-red" id="close-listing-btn">Close Listing</button>
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if add_to_watchlist == False %}
+                <form method="post">
+                    {% csrf_token %}    
+                    <button type="submit" class="button-all btn-orange" id="watchlist-btn">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                    <input type="hidden" name="remove_watchlist">
+                </form>
+                {% endif %}
+                {% if  add_to_watchlist == True%}
+                    <form method="post">
+                        {% csrf_token %}    
+                        <button type="submit" class="button-all btn-orange" id="watchlist-btn">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <input type="hidden" name="add_watchlist">
+                    </form>
+                {% endif %}
+                {%if show_bid_button %}
+                <div>
+                    <a href="create_new_bid">
+                        <button class="button-all btn-black" id="bid-btn">Bid</button>
+                    </a>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<hr>
+{% comment %} BIDS {% endcomment %}
+<h4><b>Top Bids</b></h4>
+<div>
+    {%for bid in bids%}
+        <div>
+            <button class="button-all btn-black" style="font-weight: 400;">
+                <b style="font-size: 1.25rem ">${{bid.bid_amount}}</b>
+                by <b style="font-weight: 500">{{bid.owner.first_name}} {{bid.owner.last_name}}({{bid.owner.username}})</b>
+                on <em style="color: grey">{{listing.datetime_created}}</em>
+            </button>
+        <div>
+    {% endfor %}
+</div>
+
+{% comment %} COMMENTS {% endcomment %}
+<hr>
+<div class="row">
+    <div class="col-md-2">
+        <h4><b>Comments</b></h4>
+    </div>
+    <div class="col-md-10">
+        {% if listing.listing_closed == False and comment_form is not None %}
+            <form method="post" >
+                {% csrf_token %} 
+                <div class="row">
+                    <div class="col-md-10">
+                        {{comment_form}}
+                        <input type="hidden" name="add_comment">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="button-all btn-red"
+                        id="comment-button">Comment</button>
+                    </div>
+                </div>
             </form>
         {% endif %}
-    {% endif %}
-    
-    {% if show_winner %}
-        <h3>Congratulations! You are the winner.
-        </h3>
-    {% endif %}
-    {%if listing.listing_closed == False %}
-        {%if show_close_button %}
-            <div>
-                <a href="close_listing">
-                    <button class="btn btn-success">Close Listing</button>
-                </a>
-            </div>
-        {% endif %}
-    {% else %}
-        <h3>This listing has been closed</h3>
-    {% endif %}
-    {% if listing.image_url is not None %}
-        <div>
-        <img src="{{listing.image_url}}" width=150vh>
-        </div>
-    {% else %}
-        <img src="https://www.moleculardevices.com/sites/default/files/2019-03/product-dummy.png" width=150vh/>
-    {% endif %}
-    <div>
-        <div>
-        {{listing.name}}
-        <div></div>
-        {{listing.owner.first_name}} {{listing.owner.last_name}} ({{listing.owner.username}})
-        <div></div>
-        {{listing.description}}
-        <div></div>
-        {{listing.price}}
-        <div></div>
-        {%if top_bid is not None%}
-            Highest bid: {{top_bid}}
-        {% endif %}
-        <div></div>
-        {{listing.datetime_created}}
-        <div></div>
-        {{listing.category}}
-        </div>
     </div>
-    <div>
-        {%for bid in bids%}
-            <div>
-                Amount: {{bid.bid_amount}}, 
-                Owner: {{bid.owner.first_name}}{{bid.owner.last_name}}({{bid.owner.username}}), 
-                Date: {{bid.datetime_created}}
-            </div>
-        {% endfor %}
-    </div>
-    {%if show_bid_button %}
+<div>
+<div style="margin-left: 1rem;">
+    {%for comment in comments%}
         <div>
-            <a href="create_new_bid">
-                <button class="btn btn-success">Bid</button>
-            </a>
+            <button class="button-all btn-black text-left" style="font-weight: 400;">
+                <b style="font-size: 1.15rem; font-weight:500; ">{{comment.comment_content}}</b>
+                <br>
+                by <b style="font-weight: 500">{{comment.owner.first_name}} {{comment.owner.last_name}} ({{comment.owner.username}})</b>
+                on <em style="color: grey">{{comment.datetime_created}}</em>
+            </button>
         </div>
-    {% endif %}
-    {% if listing.listing_closed == False and comment_form is not None %}
-        <form method="post">
-            {% csrf_token %}    
-            {{comment_form}}
-            <button type="submit" class="btn btn-success">Add Comment</button>
-            <input type="hidden" name="add_comment">
-        </form>
-    {% endif %}
-    
-    <div>
-        {%for comment in comments%}
-            <div>
-                Comment: {{comment.comment_content}}, 
-                Commented by: {{comment.owner.first_name}} {{comment.owner.last_name}} ({{comment.owner.username}}), 
-                Date: {{comment.datetime_created}}
-            </div>
-        {% endfor %}
-    </div>
-
+    {% endfor %}
+</div>
 
 {% endblock %}

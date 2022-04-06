@@ -1,47 +1,44 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
-
-    <div class='container'>
-        {% for list in lists %}
-            <a href="listing/{{list.listing.id}}_{{list.listing.name}}">
-                {% if list.listing.listing_closed %}
-                    <div class='row alert alert-danger'>
-                {% else %}
-                    <div class='row alert alert-secondary'>
-                {% endif %}
-
-                    {% if list.listing.image_url is not None %}
-                        <div class='col-md-2'>
-                            <img src={{list.listing.image_url}} width=150vh>
-                        </div>
-                    {% endif %}
-                    <div class='col-md-10'>
-                        <div>
-                        {% if list.listing.listing_closed %}
-                            *THIS LISTING HAS BEEN CLOSED*
-                        {% endif %}
-                        </div>
-                        <div>
-                            {{ list.listing.name }}
-                        </div>
-                        <div>
-                            {{ list.listing.price }}
-                        </div>
-                        <div>
-                            {{ list.listing.category }}
-                        </div>
-                        <div>
-                            Created on {{ list.listing.datetime_created }}
-                        </div>
-                        <div>
-                            {{ list.listing.owner.username }}
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-    </div>
-
+    <h2>Your Watchlist</h2>
+<section class="basic-grid">
+  {% for list in lists %}
+    <a href="/listing/{{list.listing.id}}_{{list.listing.name}}" class="card-link">
+        {% if list.listing.listing_closed %}
+            <div class="card" id="inactive-card">
+        {% else %}
+            <div class="card">
+        {% endif %}
+        {% if list.listing.image_url is not None %}
+          <img
+            src="{{list.listing.image_url}}"
+            class="card-img-top"
+            alt="list.listing image"
+          />
+        {% else %}
+          <img
+            src="https://www.moleculardevices.com/sites/default/files/2019-03/product-dummy.png"
+            class="card-img-top"
+            alt="dummy image"
+          />
+        {% endif %}
+        <div class="card-body">
+          {% if list.listing.listing_closed %}
+          {% endif %}
+          <h5 class="card-title"><b style="font-weight: 600;">{{ list.listing.name }}</b></h5>
+          <p class="card-text">
+            Price <b style="font-weight: 600;">${{ list.listing.price }}</b>
+            <br>
+            Owned by <b style="font-weight: 600;">{{ list.listing.owner.username }}</b>
+            <br>
+            {{ list.listing.category }}
+            <br>
+            <em style="color: grey;">Created {{ list.listing.datetime_created }}</em>
+          </p>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</section>
 {% endblock %}

@@ -10,8 +10,13 @@ class Create_listing_form(forms.Form):
     price = forms.FloatField(
         label="Price $:", required=True)
     category = forms.ChoiceField(
-        choices=Listing.Categories.choices, required=True)
+        choices=Listing.Categories.choices, required=True, label="Category:")
     image_url = forms.URLField(label="Image URL:", required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(Create_listing_form, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'textfield'
 
 
 class Create_bid_form(forms.Form):

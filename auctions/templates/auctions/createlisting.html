@@ -7,14 +7,11 @@
     </div>
   {%endif%}
   {%for f in form%}
-    <div>
+    <div style="margin-top: 1rem">    
       <h6>{{f.label}}</h6>
-    </div>
-    <div>
-      {{f}}
+          {{f}}
     </div>
   {% endfor %}
-  <br>
-  <button type="submit" class="button-all btn-green-hover">Create Listing</button>
+  <button type="submit" style="margin-top: 1rem" class="button-all btn-green-hover">Create Listing</button>
 </form>
 {% endblock %}

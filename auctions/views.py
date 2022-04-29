@@ -131,7 +131,7 @@ def create_new_bid(request, entry):
         form = Create_bid_form(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            if data['bid_amount'] > top_bid and data['bid_amount'] < 2*top_bid:
+            if data['bid_amount'] > top_bid and data['bid_amount'] < 2*top_bid+1:
                 stored = util.store_data_in_bids_model(
                     data["bid_amount"], request.user, listing)
                 if stored == -1:

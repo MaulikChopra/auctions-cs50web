@@ -4,8 +4,6 @@
 
 https://auctions-cs50web.herokuapp.com/
 
-## CS50web Project
-
 ## <a href="https://youtu.be/4vedORORFzE">Submission video</a>
 
 ### <b>Features:</b>

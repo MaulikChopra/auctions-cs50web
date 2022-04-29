@@ -3,7 +3,7 @@
 
 {% block body %}
 {%if error is not None %}
-    <div class='row alert alert-secondary'>Please enter a value greater than Top bid</div>
+    <div class='row alert alert-secondary'>Please enter a value greater than Top bid or Less than 2 times Top bid!</div>
 {% endif %}
     <form method="post">
         {% csrf_token %}   

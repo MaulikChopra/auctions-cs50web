@@ -8,6 +8,7 @@ def store_data_in_listing_model(formdata, username):
             name=formdata['name'],
             description=formdata['description'],
             price=formdata['price'],
+            base_price=formdata['price'],
             owner=User.objects.get(username=username),
             category=Listing.Categories(formdata["category"]),
             image_url=formdata['image_url'],
@@ -28,6 +29,8 @@ def store_data_in_bids_model(bid_amount, owner, listing):
             bid_amount=bid_amount,
             datetime_created=timezone.now()
         ).save()
+        listing.price = bid_amount
+        listing.save()
         print('SUCCESS: saved to database')
         return 0
     except Exception as e:

@@ -35,7 +35,9 @@ class Listing(models.Model):
     # id is automatically created
     name = models.CharField(max_length=64)
     description = models.TextField(max_length=1000)
-    price = models.FloatField(validators=[MinValueValidator(1)])
+    price = models.FloatField(
+        validators=[MinValueValidator(1)])
+    base_price = models.FloatField(validators=[MinValueValidator(1)])
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="listings")
     category = models.CharField(

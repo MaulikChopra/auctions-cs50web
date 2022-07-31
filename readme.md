@@ -1,8 +1,6 @@
 # Auctionaire! Auctions Website
 
-## <a href="https://auctions-cs50web.herokuapp.com/">Project is live!!</a>
-
-https://auctions-cs50web.herokuapp.com/
+## <a>Project is live!!</a>
 
 ## <a href="https://youtu.be/4vedORORFzE">Submission video</a>
 
